@@ -2,6 +2,11 @@
 
 namespace app\controllers;
 
+use app\patterns\visitor\units\composites\Army;
+use app\patterns\visitor\units\lists\Archer;
+use app\patterns\visitor\units\lists\Cavalry;
+use app\patterns\visitor\units\lists\LaserCannonUnit;
+use app\patterns\visitor\visitors\TextDumpArmyVisitor;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,6 +67,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionVisitor()
+    {
+        $mainArmy = new Army();
+        $mainArmy->addUnit(new Archer());
+        $mainArmy->addUnit(new LaserCannonUnit());
+        $mainArmy->addUnit(new Cavalry());
+        $textDump = new TextDumpArmyVisitor();
+        $mainArmy->accept($textDump);
+        $text = $textDump->getText();
+
+        return $this->render('visitor', [
+            'text' => $text,
+        ]);
     }
 
     /**

@@ -43,14 +43,17 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+//        http://patterns/web/index.php(так без urlManager)
+//        'urlManager' => [
+//            'enablePrettyUrl' => true,
+//            'showScriptName' => true,
+//            'enableStrictParsing' => true,
+//            'rules' => [
+//                'posts' => 'post/index',
+//            ],
+//        ],
+//    (так с urlmanager)
+
     ],
     'params' => $params,
 ];
